@@ -1,12 +1,10 @@
 
 import { Hero } from "@/components/Hero";
 import { CursorGlow } from "@/components/CursorGlow";
-import { AnimatedBackground } from "@/components/AnimatedBackground";
 
 const Index = () => {
   return (
-    <main className="min-h-screen bg-transparent relative overflow-hidden">
-      <AnimatedBackground />
+    <main className="min-h-screen bg-code-background relative overflow-hidden">
       <CursorGlow />
       <Hero />
     </main>
