@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Copy, Link, Clock, Palette } from 'lucide-react';
+import { Share2, Code2, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export const Hero = () => {
@@ -19,11 +19,11 @@ export const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Share Code <span className="text-primary">Beautifully</span>
+          Share Code <span className="bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">Beautifully</span>
         </motion.h1>
         
         <motion.div 
-          className="glass p-6 max-w-4xl mx-auto mb-12"
+          className="glass p-8 max-w-4xl mx-auto mb-12 hover:shadow-[0_0_30px_rgba(124,58,237,0.1)] transition-all duration-300"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -31,12 +31,14 @@ export const Hero = () => {
           <textarea
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            className="w-full h-64 bg-surface border border-white/10 rounded-lg p-4 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className="w-full h-64 bg-surface/50 border border-white/10 rounded-lg p-4 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-300"
             placeholder="Paste your code here..."
           />
           <div className="flex justify-end mt-4">
-            <button className="btn-primary flex items-center gap-2">
-              <Copy className="w-4 h-4" />
+            <button 
+              className="px-6 py-3 bg-primary hover:bg-primary-hover text-white rounded-lg font-medium flex items-center gap-2 transition-all duration-300 hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+            >
+              <Code2 className="w-4 h-4" />
               Create Paste
             </button>
           </div>
@@ -44,12 +46,12 @@ export const Hero = () => {
 
         <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           <FeatureCard 
-            icon={Link}
+            icon={Share2}
             title="Instant Sharing"
-            description="Share your code snippets with a single click"
+            description="Share your code snippets with anyone, instantly"
           />
           <FeatureCard 
-            icon={Palette}
+            icon={Code2}
             title="Syntax Highlighting"
             description="Support for all major programming languages"
           />
@@ -70,7 +72,7 @@ const FeatureCard = ({ icon: Icon, title, description }: {
   description: string 
 }) => (
   <motion.div 
-    className="card p-6"
+    className="glass p-6 hover:shadow-[0_0_30px_rgba(124,58,237,0.1)] transition-all duration-300"
     whileHover={{ y: -5 }}
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}

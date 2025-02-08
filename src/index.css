@@ -32,7 +32,7 @@
   }
 
   .glass {
-    @apply bg-surface-light/20 backdrop-blur-lg border border-white/10 rounded-2xl;
+    @apply bg-surface-light/10 backdrop-blur-lg border border-white/10 rounded-2xl;
   }
 
   .card {
