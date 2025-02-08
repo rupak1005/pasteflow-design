@@ -2,17 +2,16 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-const Particle = ({ delay = 0, x, y }: { delay?: number; x: number; y: number }) => (
+const Particle = ({ delay = 0 }: { delay?: number }) => (
   <motion.div
     className="absolute rounded-full bg-white/5"
-    initial={{ x, y }}
     style={{
       width: Math.random() * 4 + 2 + 'px',
       height: Math.random() * 4 + 2 + 'px',
     }}
     animate={{
-      y: [y, y - 30, y],
-      x: [x, x + Math.random() * 20 - 10, x],
+      y: [0, -30, 0],
+      x: [0, Math.random() * 20 - 10, 0],
       opacity: [0.2, 0.5, 0.2],
     }}
     transition={{
@@ -24,16 +23,11 @@ const Particle = ({ delay = 0, x, y }: { delay?: number; x: number; y: number })
 );
 
 export const AnimatedBackground = () => {
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number }>>([]);
+  const [particles, setParticles] = useState<number[]>([]);
   const [scrollOffset, setScrollOffset] = useState(0);
 
   useEffect(() => {
-    const newParticles = Array.from({ length: 50 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-    }));
-    setParticles(newParticles);
+    setParticles(Array.from({ length: 50 }, (_, i) => i));
 
     const handleScroll = () => {
       const offset = window.scrollY * 0.3;
@@ -48,12 +42,14 @@ export const AnimatedBackground = () => {
   return (
     <div className="fixed inset-0 animated-gradient overflow-hidden">
       <div className="absolute inset-0 opacity-30">
-        {particles.map((particle) => (
+        {particles.map((i) => (
           <Particle
-            key={particle.id}
-            delay={particle.id * 0.1}
-            x={particle.x}
-            y={particle.y}
+            key={i}
+            delay={i * 0.1}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
           />
         ))}
       </div>
